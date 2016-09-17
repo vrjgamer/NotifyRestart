@@ -4,12 +4,10 @@ import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 /**
  * Created by VRUSHABH on 16-09-2016.
@@ -30,11 +28,15 @@ public class RestartBroadcastListener extends BroadcastReceiver {
     private void showNotification(Context context) {
         Log.d("boot", "finished " + MainActivity.getPrefsNotify(context));
         // Set Notification Title
-        String strtitle = "Phone Restarted";
+        String strtitle = MainActivity.getPrefsTitle(context);
         // Set Notification Text
-        String strtext = "Time: " + getDate();
+        String strtext = MainActivity.getPrefsText(context);
+
+        Log.d("boot", "notification " + strtitle + " "+ strtext);
 
         //Create Notification using NotificationCompat.Builder
+        Uri uri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
                 // Set Icon
                 .setSmallIcon(R.mipmap.ic_launcher)
@@ -44,6 +46,8 @@ public class RestartBroadcastListener extends BroadcastReceiver {
                 .setContentTitle(strtitle)
                 // Set Text
                 .setContentText(strtext)
+                //Set Sound
+                .setSound(uri)
                 //Auto Dismiss Notification
                 .setAutoCancel(true);
 
@@ -53,9 +57,4 @@ public class RestartBroadcastListener extends BroadcastReceiver {
         notificationmanager.notify(0, builder.build());
     }
 
-    private String getDate() {
-        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss - dd-MM-yyyy", Locale.ENGLISH);
-        Date now = new Date();
-        return formatter.format(now);
-    }
 }

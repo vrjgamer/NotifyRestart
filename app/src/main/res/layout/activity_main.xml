@@ -26,8 +26,6 @@
         android:layout_height="wrap_content"
         android:text="Notification "
         android:id="@+id/notifiy_switch"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
         android:checked="true"
         android:switchPadding="10dp"
         android:textSize="20dp"
@@ -37,7 +35,10 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:textOff=""
-        android:textOn="" />
+        android:textOn=""
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -52,5 +53,25 @@
         android:textSize="12dp"
         android:textStyle="italic"
         android:typeface="sans" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/title_et"
+        android:layout_below="@+id/notifiy_switch"
+        android:layout_centerHorizontal="true"
+        android:hint="Notification title"
+        android:gravity="center"
+        android:layout_marginTop="20dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_et"
+        android:layout_below="@+id/title_et"
+        android:layout_centerHorizontal="true"
+        android:hint="Notification Text"
+        android:gravity="center"
+        android:layout_marginTop="10dp" />
 
 </RelativeLayout>
